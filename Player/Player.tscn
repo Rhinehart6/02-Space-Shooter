@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Player/playerShip3_blue.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Laser Sprites/19.png" type="Texture" id=3]
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 512, 300 )
+scale = Vector2( 0.75, 0.75 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Exhaust" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, 45 )
+rotation = -1.5708
+scale = Vector2( 0.5, 0.9 )
+texture = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 9, -35, 16.2, -21.5, 16.9, -21.5, 49, 15.5, 49, 32.5, 23.8, 32.5, 18.8, 37.5, -18.6, 37.5, -22.9, 32.5, -39.8, 32.5, -49, 33.5, -49, 15.4, -15, -23.2, -15, -25, -9, -36.1, -9, -37.5, 9, -37.5 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -1.33331, -53.3333, 53.3334, 24, 52, 33.3333, 24, 32, 16, 41.3333, -14.6666, 41.3333, -26.6666, 32, -52, 33.3333, -53.3333, 17.3333 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
